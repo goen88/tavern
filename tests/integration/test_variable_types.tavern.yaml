@@ -1,0 +1,19 @@
+---
+
+test_name: Test cannot send a set
+
+_xfail: verify
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: match top level
+    request:
+      url: "{host}/fake_dictionary"
+      method: GET
+      json: {a, b}
+    response:
+      status_code: 200
+      body:
+        top: !anything
