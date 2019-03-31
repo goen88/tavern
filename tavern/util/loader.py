@@ -338,3 +338,10 @@ def load_single_document_yaml(filename):
             raise_from(exceptions.UnexpectedDocumentsError(msg), e)
 
     return contents
+
+
+def error_on_empty_scalar(*args, **kwargs):
+    raise exceptions.BadSchemaError("Cannot define an empty value in test - either give it a value or explicitly set it to None")
+
+
+yaml.parser.Parser.process_empty_scalar = error_on_empty_scalar
